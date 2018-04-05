@@ -166,7 +166,7 @@ void Graph::make_example()
     // m_interface = new GraphInterface(50, 0, 750, 600);
 
 
-    int ordre;
+
     ifstream fichier("coord.txt", ios::in);  // on ouvre le fichier en lecture
 
         if(fichier)  // si l'ouverture a réussi
@@ -177,11 +177,11 @@ void Graph::make_example()
             double poids;
             string vignette;
 
-            fichier>>ordre;
+            fichier>>m_ordre;
 
 
 
-            for (int i=0;i<ordre;i++)
+            for (int i=0;i<m_ordre;i++)
             {
                 fichier>>indice;
                 fichier>>poids;
@@ -209,9 +209,9 @@ void Graph::make_example()
             double poids;
             int num_arc=0;
 
-            for (int j=0; j<ordre;j++)
+            for (int j=0; j<m_ordre;j++)
             {
-                for (int k=0;k<ordre;k++)
+                for (int k=0;k<m_ordre;k++)
                 {
                     fichier2>>poids;
 
@@ -234,9 +234,41 @@ void Graph::make_example()
         {
             cerr << "Impossible d'ouvrir le fichier !" << endl;
         }
+}
+
+void Graph::save()
+
+{
+    ofstream fichier ("coord.txt",ios::trunc);
+
+    string nom_image;
+
+    if (fichier)
+    {
+        fichier<< m_ordre<<endl;
+
+        for (auto &it : m_vertices)
+        {
+
+            fichier << it.first<<" ";
+            fichier << it.second.m_value<<" ";
+            fichier<<it.second.m_interface->m_top_box.get_frame_pos() .x<< " ";
+            fichier<<it.second.m_interface->m_top_box.get_frame_pos() .y<< " ";
+            nom_image=it.second.m_interface->m_img.get_pic_name();
+            nom_image.erase(nom_image.size()-4,4);
+            fichier<<nom_image + ".jpg" << endl;
+        }
 
 
 
+        fichier.close();
+
+
+    }
+
+    else { cerr <<" cant open the file"<<endl; }
+
+}
     /// Les sommets doivent être définis avant les arcs
    /* // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
     add_interfaced_vertex(0, 30.0, 200, 100, "kaa.jpg");
@@ -260,7 +292,7 @@ void Graph::make_example()
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
     add_interfaced_edge(9, 3, 7, 80.0);*/
-}
+
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
 void Graph::update()
