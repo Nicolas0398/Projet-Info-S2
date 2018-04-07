@@ -269,6 +269,52 @@ void Graph::save()
     else { cerr <<" cant open the file"<<endl; }
 
 }
+
+
+void Graph::simulation()
+{
+
+for (auto &sommet : m_vertices)
+{
+
+
+    double coeff=0;
+
+    ///sommet.second.m_value++;
+
+    for (int i=0;i<sommet.second.m_in.size(); i++)
+    {
+
+        cout <<"ok0"<<endl;
+        for (auto &arrete : m_edges)
+        {
+            if(arrete.second.m_from==sommet.second.m_in[i] && arrete.second.m_to==sommet.first)
+            {
+                coeff = coeff + arrete.second.m_weight*(m_vertices[i].m_value/10);
+                cout<<" ok1"<<endl;
+            }
+        }
+
+        if (coeff==0)
+        {
+            coeff=1;
+            cout<<"ok2"<<endl;
+        }
+
+        sommet.second.m_value = sommet.second.m_value + ( 0.0005*(sommet.second.m_value*(1-(sommet.second.m_value/coeff))));
+
+        cout<< coeff<<" "<< sommet.second.m_value<<endl;
+    }
+
+}
+
+
+
+
+
+
+
+}
     /// Les sommets doivent être définis avant les arcs
    /* // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
     add_interfaced_vertex(0, 30.0, 200, 100, "kaa.jpg");
@@ -314,6 +360,7 @@ void Graph::update()
     for (auto &elt : m_edges)
         elt.second.post_update();
 
+        m_ordre=m_vertices.size();
 }
 
 /// Aide à l'ajout de sommets interfacés
@@ -350,5 +397,9 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
     m_edges[idx] = Edge(weight, ei);
+    m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
+    m_vertices[id_vert1].m_out.push_back(id_vert2);
+    m_vertices[id_vert2].m_in.push_back(id_vert1);
 }
 
