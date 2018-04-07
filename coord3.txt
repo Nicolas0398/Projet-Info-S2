@@ -1,0 +1,4 @@
+3
+0 42.8571 368 49 aigle.jpg
+1 45.0933 376 288 lapin.jpg
+2 68.5526 384 542 carottes.jpg

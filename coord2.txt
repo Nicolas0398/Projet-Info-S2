@@ -1,0 +1,13 @@
+12
+0 50 418 3 aigle.jpg
+1 54.9254 3 123 serpent.jpg
+2 54.9254 299 206 grue.jpg
+3 7.92073 489 167 canard.jpg
+4 54.9254 760 161 moineau.jpg
+5 60.6253 3 326 rat.jpg
+6 60.6253 337 401 grenouille.jpg
+7 60.6253 677 301 grospoisson.jpg
+8 67.0082 3 617 insecte.jpg
+9 60.6253 301 617 petitpoisson.jpg
+10 67.0082 775 617 escargot.jpg
+11 67.9723 548 617 hippocampe.jpg
