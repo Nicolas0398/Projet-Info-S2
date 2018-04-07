@@ -23,7 +23,6 @@ int main()
     BITMAP *eco1;
     BITMAP *eco2;
     BITMAP *eco3;
-    BITMAP *aide_menu;
     BITMAP *quitter;
     BITMAP *buffer_menu;
 
@@ -91,25 +90,25 @@ int main()
 
         if (((mouse_x<465)&&(mouse_x>325)&&(mouse_y<(525+56))&&(mouse_y>525)))///quitter zone
         {
-            rectfill(buffer_menu, 325, 525, 465, 525+56, makecol(0,0,0));
+            rectfill(buffer_menu, 325, 525, 465, 525+56, makecol(255,0,0));
 
         }
         if (((mouse_x<500)&&(mouse_x>300)&&(mouse_y<510)&&(mouse_y>450))) ///eco3
         {
-            rectfill(buffer_menu, 300, 450, 500, 510, makecol(0,0,0));
+            rectfill(buffer_menu, 300, 450, 500, 510, makecol(255,0,0));
             choix=3;
 
         }
           if (((mouse_x<500)&&(mouse_x>300)&&(mouse_y<410)&&(mouse_y>350)))///eco2
         {
-            rectfill(buffer_menu, 300, 350, 500, 410, makecol(0,0,0));
+            rectfill(buffer_menu, 300, 350, 500, 410, makecol(255,0,0));
            choix=2;
 
         }
 
         if (((mouse_x<500)&&(mouse_x>300)&&(mouse_y<310)&&(mouse_y>250)))///eco1
         {
-            rectfill(buffer_menu, 300, 250, 500, 310, makecol(0,0,0));
+            rectfill(buffer_menu, 300, 250, 500, 310, makecol(255,0,0));
             choix=1;
         }
 
@@ -126,7 +125,7 @@ int main()
 
         if (((mouse_x<600+150)&&(mouse_x>600)&&(mouse_y<(60+27))&&(mouse_y>60)))
         {
-            rectfill(buffer_menu, 600, 60, 600+150, 60+27, makecol(0,0,0));   ///aide
+            rectfill(buffer_menu, 600, 60, 600+150, 60+27, makecol(0,0,0));
         }
 
         if ((mouse_b&1)&&((mouse_x<465)&&(mouse_x>325)&&(mouse_y<(525+56))&&(mouse_y>525))) ///quitter
