@@ -3,21 +3,12 @@
 
 #include "graph.h"
 
-int main()
+
+
+
+   int menu ()
 {
-    /// A appeler en 1er avant d'instancier des objets graphiques etc...
-    grman::init();
 
-    /// Le nom du répertoire où se trouvent les images à charger
-    grman::set_pictures_path("pics");
-
-    /// Un exemple de graphe
-    Graph g;
-
-    std::string f1;
-    std::string f2;
-
-    BITMAP *accueil_retour;
     BITMAP *background_menu;
     BITMAP *titre;
     BITMAP *eco1;
@@ -25,8 +16,9 @@ int main()
     BITMAP *eco3;
     BITMAP *quitter;
     BITMAP *buffer_menu;
-
     int choix=0;
+
+
     background_menu=load_bitmap("background.bmp",NULL);
     if (!background_menu)
     {
@@ -81,7 +73,7 @@ int main()
 
     /////
 
-    while (!((mouse_b&1)&&((mouse_x<500)&&(mouse_x>300)&&(mouse_y<310)&&(mouse_y>250))||((mouse_b&1)&&((mouse_x<500)&&(mouse_x>300)&&(mouse_y<410)&&(mouse_y>350))) || ((mouse_b&1)&&((mouse_x<500)&&(mouse_x>300)&&(mouse_y<510)&&(mouse_y>450))) ))
+    while (!((mouse_b&1)&&((mouse_x<500)&&(mouse_x>300)&&(mouse_y<310)&&(mouse_y>250))||((mouse_b&1)&&((mouse_x<500)&&(mouse_x>300)&&(mouse_y<410)&&(mouse_y>350))) || ((mouse_b&1)&&((mouse_x<500)&&(mouse_x>300)&&(mouse_y<510)&&(mouse_y>450)))))
     {
 
         blit(background_menu,buffer_menu,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -148,6 +140,17 @@ int main()
 
     }
 
+    return choix;
+
+}
+
+
+void chargereco(int choix)
+{
+    Graph g;
+    std::string f1;
+    std::string f2;
+
      if(choix==1)
     {
         f1 = "coord.txt";
@@ -157,13 +160,15 @@ int main()
 
     else if(choix==2)
     {
-
+        f1 = "coord2.txt";
+        f2 = "matrice2.txt";
 
     }
 
     else if(choix==3)
     {
-
+        f1 = "coord3.txt";
+        f2 = "matrice3.txt";
 
 
     }
@@ -173,10 +178,15 @@ int main()
 
 
 
+
+
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
-    while ( !key[KEY_ESC] )
+    while ( !key[KEY_P] )
     {
+
+
+
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         g.update();
 
@@ -184,8 +194,99 @@ int main()
         grman::mettre_a_jour();
 
         g.save(f1);
+
+
+
     }
 
+
+}
+
+
+
+
+int main()
+{
+
+
+
+
+
+
+    /// A appeler en 1er avant d'instancier des objets graphiques etc...
+    grman::init();
+
+    /// Le nom du répertoire où se trouvent les images à charger
+    grman::set_pictures_path("pics");
+    int choix=0;
+
+    /// Un exemple de graphe
+  /*  Graph g;
+
+    std::string f1;
+    std::string f2;
+    int choix=0;
+
+
+
+
+    choix=menu();
+    chargereco(choix,&f1,&f2);
+
+
+    if(choix==1)
+    {
+        f1 = "coord.txt";
+        f2 = "matrice.txt";
+
+    }
+
+    else if(choix==2)
+    {
+        f1 = "coord2.txt";
+        f2 = "matrice2.txt";
+
+    }
+
+    else if(choix==3)
+    {
+
+//////if ( key[KEY_P]){
+            choix=menu();
+            chargereco(choix,&f1,&f2);
+
+    }
+
+
+    g.make_example(f1,f2);
+
+
+
+
+
+    /// Vous gardez la main sur la "boucle de jeu"
+    /// ( contrairement à des frameworks plus avancés )
+    while ( !key[KEY_ESC] )
+    {
+
+
+
+        /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
+        g.update();
+
+        /// Mise à jour générale (clavier/souris/buffer etc...)
+        grman::mettre_a_jour();
+
+        g.save(f1);
+
+
+
+    }*/
+    do {
+    choix=menu();
+    chargereco(choix);
+
+    }while(!key[KEY_ESC]);
 
 
     grman::fermer_allegro();
